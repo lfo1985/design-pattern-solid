@@ -1,17 +1,19 @@
+## App
+Aplicação utilizando Design Pattern Strategy com conceitos de SOLID.
+
+## Releases
+* Ajustes nas estratégias concretas;
+* Unificação da validação entre as estratégias;
+* Aplicação do mapeamento de colunas.
+
 ## Instalação da aplicação
 
 ```bash
 composer install
 ```
 
-## Instalação do PHPUnit
-
-```bash
-require --dev --prefer-dist phpunit/phpunit
-```
-
 ## Executar os testes
 
 ```bash
-vendor\bin\phpunit test/xxx.php
+vendor\bin\phpunit tests/xxx.php
 ```
