@@ -5,39 +5,39 @@ namespace Lfo19\App\Services\ReadFile\Types;
 use Lfo19\App\Services\ReadFile\Interfaces\I_ReadFile;
 use Lfo19\App\Services\ReadFile\Utils\GetFileData;
 
-class FileTXT implements I_ReadFile {
+class FileTXT implements I_ReadFile
+{
 
     private $fileName;
 
-    public function setFile(string $fileName): void{
+    public function setFile(string $fileName): void
+    {
         $this->fileName = $fileName;
     }
 
-    public function read (): array{
+    public function read(): array
+    {
 
         try {
 
-            $path = DATA_FILE_PATH.$this->fileName;
-
-            if(!file_exists($path)){
-                throw new \Exception('Arquivo não existe!', 1);
-            }
-            
             $getFileData = new GetFileData;
-            $getFileData->txt($path);
+            $getFileData->txt(DATA_FILE_PATH . $this->fileName, ';');
 
-            if($getFileData->getExtension() != 'txt'){
-                throw new \Exception('Extensão incorreta!', 2);
-            }
+            $output = array_map(function ($item) {
 
-            return response(true, $getFileData->getData(), null);
+                list($nome, $cpf, $email) = $item;
 
+                return [
+                    'nome' => $nome,
+                    'cpf' => $cpf,
+                    'email' => $email,
+                ];
+            }, $getFileData->getData());
+
+            return response(true, $output, null);
         } catch (\Exception $e) {
 
             return response(false, [], $e->getMessage());
-
         }
-
     }
-
 }

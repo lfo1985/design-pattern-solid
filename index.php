@@ -4,12 +4,16 @@ require_once 'vendor/autoload.php';
 
 use Lfo19\App\Services\ReadFile\ReadFile;
 use Lfo19\App\Services\ReadFile\Types\FileCSV;
+use Lfo19\App\Services\ReadFile\Types\FileTXT;
 
 $fileCSV = new FileCSV;
 $fileCSV->setFile('dados.csv');
 
-$readFile = new ReadFile($fileCSV);
+$readFileCsv = new ReadFile($fileCSV);
 
-echo '<pre>';
-print_r($readFile->data());
-echo '</pre>';
+$fileTXT = new FileTXT;
+$fileTXT->setFile('dados.txt');
+
+$readFileTxt = new ReadFile($fileTXT);
+
+dd(array_merge($readFileCsv->content()['data'], $readFileTxt->content()['data']));
