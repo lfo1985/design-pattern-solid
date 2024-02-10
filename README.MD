@@ -1,10 +1,16 @@
-## Comando para criar o ambiente de teste unitário
+## Instalação da aplicação
+
+```bash
+composer install
+```
+
+## Instalação do PHPUnit
 
 ```bash
 require --dev --prefer-dist phpunit/phpunit
 ```
 
-## Comando para executar o teste
+## Executar os testes
 
 ```bash
 vendor\bin\phpunit test/xxx.php
