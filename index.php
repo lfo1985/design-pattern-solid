@@ -7,12 +7,12 @@ use Lfo19\App\Services\ReadFile\Types\FileCSV;
 use Lfo19\App\Services\ReadFile\Types\FileTXT;
 
 $fileCSV = new FileCSV;
-$fileCSV->setFile('dados.csv');
+$fileCSV->setFileName('dados.csv');
 
 $readFileCsv = new ReadFile($fileCSV);
 
 $fileTXT = new FileTXT;
-$fileTXT->setFile('dados.txt');
+$fileTXT->setFileName('dados.txt');
 
 $readFileTxt = new ReadFile($fileTXT);
 

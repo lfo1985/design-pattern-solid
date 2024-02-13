@@ -12,7 +12,7 @@ class ReadFileTest extends TestCase
     {
 
         $fileTXT = new FileTXT;
-        $fileTXT->setFile('dados.txt');
+        $fileTXT->setFileName('dados.txt');
 
         $response = (new ReadFile($fileTXT))->content();
 
@@ -23,7 +23,7 @@ class ReadFileTest extends TestCase
     {
 
         $fileTXT = new FileTXT;
-        $fileTXT->setFile('dados.docx');
+        $fileTXT->setFileName('dados.docx');
 
         $response = (new ReadFile($fileTXT))->content();
 
@@ -35,7 +35,7 @@ class ReadFileTest extends TestCase
     {
 
         $fileCSV = new FileCSV;
-        $fileCSV->setFile('dados_xxx_123.csv');
+        $fileCSV->setFileName('dados_xxx_123.csv');
 
         $response = (new ReadFile($fileCSV))->content();
 
@@ -47,7 +47,7 @@ class ReadFileTest extends TestCase
     {
 
         $FileCSV = new FileCSV;
-        $FileCSV->setFile('dados.csv');
+        $FileCSV->setFileName('dados.csv');
 
         $response = (new ReadFile($FileCSV))->content();
 

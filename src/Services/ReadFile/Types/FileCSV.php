@@ -3,16 +3,41 @@
 namespace Lfo19\App\Services\ReadFile\Types;
 
 use Lfo19\App\Services\ReadFile\Interfaces\I_ReadFile;
-use Lfo19\App\Services\ReadFile\Utils\GetFileData;
+use Lfo19\App\Services\ReadFile\Traits\T_CSV;
 
 class FileCSV implements I_ReadFile
 {
 
-    private $fileName;
+    use T_CSV;
 
-    public function setFile(string $fileName): void
+    private string $fileName;
+    private string $path = DATA_FILE_PATH;
+    public array $data;
+
+    public function setFileName(string $fileName): void
     {
         $this->fileName = $fileName;
+    }
+
+    public function setData(array $data): void
+    {
+        $this->data = $data;
+    }
+
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    public function validation(){
+        /**
+         * @todo aplicar validação para que os testes unitários voltem a funcionar
+         */
     }
 
     public function read(): array
@@ -20,19 +45,16 @@ class FileCSV implements I_ReadFile
 
         try {
 
-            $getFileData = new GetFileData;
-            $getFileData->csv(DATA_FILE_PATH . $this->fileName);
+            $output = array_map(function ($row) {
 
-            $output = array_map(function ($item) {
-
-                list($nome, $cpf, $email) = $item;
+                list($nome, $cpf, $email) = $row;
 
                 return [
                     'nome' => $nome,
                     'cpf' => $cpf,
                     'email' => $email,
                 ];
-            }, $getFileData->getData());
+            }, $this->rows());
 
             return response(true, $output, null);
         } catch (\Exception $e) {

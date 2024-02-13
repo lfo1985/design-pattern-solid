@@ -8,6 +8,12 @@ interface I_ReadFile {
 
     public function read(): array;
 
-    public function setFile(string $fileName): void;
+    public function setFileName(string $fileName): void;
+
+    public function setData(array $data): void;
+
+    public function getPath(): string;
+
+    public function getFileName(): string;
 
 }
